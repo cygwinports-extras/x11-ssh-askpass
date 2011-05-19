@@ -1,0 +1,29 @@
+DESCRIPTION="X11 password dialog for ssh-askpass"
+HOMEPAGE="http://www.jmknoble.net/software/x11-ssh-askpass/"
+SRC_URI="http://www.jmknoble.net/software/x11-ssh-askpass/${P}.tar.gz"
+
+appdefaultdir=$(pkg-config --variable=appdefaultdir xt)
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygconf \
+		--libexecdir=/usr/lib/ssh \
+		--with-app-defaults-dir=${appdefaultdir}
+	xmkmf
+	cygmake includes
+	cygmake
+}
+
+src_install() {
+	cd ${B}
+	cyginstall
+	rm -f ${D}/usr/lib/ssh/ssh-askpass
+
+	cd ${S}
+	insinto ${appdefaultdir}
+	for ad in SshAskpass-1337.ad SshAskpass-NeXTish.ad SshAskpass-green.ad SshAskpass-motif.ad
+	do
+		newins ${ad} ${ad%.ad}
+	done
+}
