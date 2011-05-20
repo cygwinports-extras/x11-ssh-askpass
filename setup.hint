@@ -1,5 +1,5 @@
 category: X11
-requires: alternatives openssh libX11_6 libXt6
+requires: alternatives libX11_6 libXt6
 sdesc: "X11 passphrase dialog for ssh-add"
 ldesc: "This is an X11-based passphrase dialog for use with OpenSSH.  It 
 is intended as a lightweight alternative to the Perl/Tk-based 

@@ -8,7 +8,7 @@ src_compile() {
 	lndirs
 	cd ${B}
 	cygconf \
-		--libexecdir=/usr/lib/ssh \
+		--libexecdir=/usr/sbin \
 		--with-app-defaults-dir=${appdefaultdir}
 	xmkmf
 	cygmake includes
@@ -18,7 +18,8 @@ src_compile() {
 src_install() {
 	cd ${B}
 	cyginstall
-	rm -f ${D}/usr/lib/ssh/ssh-askpass
+	# handled by alternatives
+	rm -f ${D}/usr/sbin/ssh-askpass
 
 	cd ${S}
 	insinto ${appdefaultdir}
@@ -26,4 +27,6 @@ src_install() {
 	do
 		newins ${ad} ${ad%.ad}
 	done
+
+	doenv SSH_ASKPASS /usr/sbin/ssh-askpass
 }
