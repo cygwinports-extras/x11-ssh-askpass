@@ -1,6 +1,14 @@
-DESCRIPTION="X11 password dialog for ssh-askpass"
+NAME="x11-ssh-askpass"
+VERSION=1.2.4
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="X11 passphrase dialog for ssh-add"
+DESCRIPTION="This is an X11-based passphrase dialog for use with OpenSSH.  It
+is intended as a lightweight alternative to the Perl/Tk-based ssh-askpass
+dialog and GNOME-based ssh-askpass dialog which accompany OpenSSH. These dialogs
+are intended to be called from the ssh-add program and not invoked directly."
 HOMEPAGE="http://www.jmknoble.net/software/x11-ssh-askpass/"
-SRC_URI="http://www.jmknoble.net/software/x11-ssh-askpass/${P}.tar.gz"
+SRC_URI="http://www.jmknoble.net/software/x11-ssh-askpass/${NAME}-${VERSION}.tar.gz"
 
 appdefaultdir=$(pkg-config --variable=appdefaultdir xt)
 
